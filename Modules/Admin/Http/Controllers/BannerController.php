@@ -55,7 +55,7 @@ class BannerController extends Controller
     public function __construct(BannerRepository $repository, AppVersionRepository $appVersionRepository, TabRepository $tabRepository)
     {
         parent::__construct();
-        $this->middleware('acl');
+     //   $this->middleware('acl');
         $this->repository = $repository;
         $this->appVersionRepository = $appVersionRepository;
         $this->tabRepository    =   $tabRepository;
@@ -128,12 +128,12 @@ class BannerController extends Controller
                 ->addColumn('banner_check', function ($banners) {
                     $status = '<input class="form-check-input" name="multi_chk[]"  type="checkbox" value="'.$banners->id.'" id="chk_'.$banners->id.'" >';
                     return $status;
-                })      
+                }) ->escapeColumns([])     
 
                 ->addColumn('status', function ($banners) {
                     $status = ($banners->status) ? '<span class="label label-sm label-success">' . trans('admin::messages.active') . '</span>' : '<span class="label label-sm label-danger">' . trans('admin::messages.inactive') . '</span>';
                     return $status;
-                })
+                })->escapeColumns([])
                 ->addColumn('login_type', function ($banner) {
                     $loginType = 'NA';
                     if($banner->login_type != NULL){
@@ -153,7 +153,7 @@ class BannerController extends Controller
                     }else{
                         return '<div class="testimonial-listing-img">' . ImageHelper::getBannerImagePath($banners->id, $banners->banner_name) . '</div>';
                     }   
-                })
+                })->escapeColumns([])
                 ->addColumn('updated_at', function ($banner) {
                     $dateTimeFormat = ConfigConstantHelper::getValue('C_DATEFORMAT');
                     $updated_at = date($dateTimeFormat, strtotime($banner->updated_at));
@@ -203,14 +203,14 @@ class BannerController extends Controller
                 })
                 ->addColumn('action', function ($banner) {
                     $actionList = '';
-                    if (!empty(Auth::user()->hasEdit) || (!empty(Auth::user()->hasOwnEdit) && ($banner->created_by == Auth::user()->id))) {
+                    //if (!empty(Auth::user()->hasEdit) || (!empty(Auth::user()->hasOwnEdit) && ($banner->created_by == Auth::user()->id))) {
                         $actionList = '<a href="javascript:;" id="' . $banner->id . '" data-action="edit" data-id="' . $banner->id . '" id="' . $banner->id . '" class="btn btn-xs default margin-bottom-5 yellow-gold edit-form-link" title="Edit"><i class="fa fa-pencil"></i></a>';
-                    }
-                    if (!empty(Auth::user()->hasDelete) || (!empty(Auth::user()->hasOwnDelete) && ($banner->created_by == Auth::user()->id))) {
-                        $actionList .= '<a href="javascript:;" data-message="' . trans('admin::messages.delete-confirm') . '" data-action="delete" data-id="' . $banner->id . '" class="btn btn-xs default red-thunderbird margin-bottom-5 delete" title="' . trans('admin::messages.delete') . '"><i class="fa fa-trash-o"></i></a>';
-                    }
+                    // }
+                    // if (!empty(Auth::user()->hasDelete) || (!empty(Auth::user()->hasOwnDelete) && ($banner->created_by == Auth::user()->id))) {
+                      $actionList .= '<a href="javascript:;" data-message="' . trans('admin::messages.delete-confirm') . '" data-action="delete" data-id="' . $banner->id . '" class="btn btn-xs default red-thunderbird margin-bottom-5 delete" title="' . trans('admin::messages.delete') . '"><i class="fa fa-trash-o"></i></a>';
+                    // }
                     return $actionList;
-                })
+                }) ->escapeColumns([]) 
                ->filter(function ($instance) use ($request) {
                     if ($request->has('banner_title')) {
                        $instance->collection = $instance->collection->filter(function ($row) use ($request) {

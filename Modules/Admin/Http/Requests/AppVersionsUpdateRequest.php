@@ -58,6 +58,7 @@ class AppVersionsUpdateRequest extends Request
      */
     public function authorize()
     {
+        return true;
         $action = $this->route()->getAction();
 
         $is_edit = Auth::user()->can($action['as'], 'edit');

@@ -10,6 +10,7 @@
 namespace Modules\Admin\Repositories;
 
 use Modules\Admin\Models\Banner;
+use Modules\Admin\Models\BannerScreen;
 use Modules\Admin\Models\BannerCategory;
 use Modules\Admin\Services\Helper\ImageHelper;
 use Illuminate\Support\Facades\Redis;
@@ -49,6 +50,18 @@ class BannerRepository extends BaseRepository
         //Cache::tags not suppport with files and Database
         $response = Cache::tags(Banner::table())->remember($cacheKey, $this->ttlCache, function() {
             return Banner::orderBy('updated_at', 'desc')->get();
+        });
+
+        return $response;
+    }
+
+    public function bannerScreenData($params = [])
+    {
+        Cache::tags(BannerScreen::table())->flush();
+        $cacheKey = str_replace(['\\'], [''], __METHOD__) . ':' . md5(json_encode($params));
+        //Cache::tags not suppport with files and Database
+        $response = Cache::tags(BannerScreen::table())->remember($cacheKey, $this->ttlCache, function() {
+            return BannerScreen::orderBY('id')->orderBy('updated_at', 'desc')->pluck('screen_title as screen_name','id');
         });
 
         return $response;

@@ -57,7 +57,7 @@ class AppVersionRepository extends BaseRepository
         $cacheKey = str_replace(['\\'], [''], __METHOD__);
         //Cache::tags not suppport with files and Database
         $response = Cache::tags(AppVersion::table())->remember($cacheKey, $this->ttlCache, function() {
-            return AppVersion::orderBY('app_version')->where('status',1)->lists('app_version','app_version');
+            return AppVersion::orderBY('app_version')->where('status',1)->pluck('app_version','app_version');
         });
       
         return $response;

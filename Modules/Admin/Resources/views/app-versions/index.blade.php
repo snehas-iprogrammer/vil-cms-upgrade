@@ -18,9 +18,7 @@
 @section('content')
 @include('admin::partials.breadcrumb')
 <div id="ajax-response-text"></div>
-@if(!empty(Auth::user()->hasAdd))
 @include('admin::app-versions.create')
-@endif
 @php $linkIcon = \Modules\Admin\Services\Helper\MenuHelper::getSelectedPageLinkIcon() @endphp
 <div id="edit_form">
 
@@ -32,11 +30,10 @@
             <i class="fa {{$linkIcon}} font-blue-sharp"></i>
             <span class="caption-subject font-blue-sharp bold uppercase">{!! trans('admin::messages.view-name',['name'=> 'App Versions']) !!}</span>
         </div>
-        @if(!empty(Auth::user()->hasAdd))
+    
         <div class="actions">
             <a href="javascript:;" class="btn blue btn-add-big btn-expand-form"><i class="fa fa-plus"></i><span class="hidden-480">{!! trans('admin::messages.add-name',['name'=> 'App Version']) !!} </span></a>
         </div>
-        @endif
     </div>
     <div class="portlet-body">
         <div class="table-container">

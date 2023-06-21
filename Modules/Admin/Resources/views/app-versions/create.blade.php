@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="portlet-body form display-hide">
-        {!! Form::open(['route' => ['admin.app-versions.store'], 'method' => 'post', 'class' => 'form-horizontal config-category-form',  'id' => 'create-app-version', 'msg' => trans('admin::messages.added',['name'=> 'App Version']) ]) !!}
+        {!! Form::open(['route' => ['app-versions.store'], 'method' => 'post', 'class' => 'form-horizontal config-category-form',  'id' => 'create-app-version', 'msg' => trans('admin::messages.added',['name'=> 'App Version']) ]) !!}
         @include('admin::app-versions.form',['from'=>'create'])
         <div class="form-actions">
             <div class="col-md-6">

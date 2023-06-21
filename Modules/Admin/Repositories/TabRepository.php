@@ -40,7 +40,7 @@ class TabRepository extends BaseRepository
         $cacheKey = str_replace(['\\'], [''], __METHOD__);
         //Cache::tags not suppport with files and Database
         $response = Cache::tags(Tab::table())->remember($cacheKey, $this->ttlCache, function() {
-            return Tab::orderBY('id')->where('status',1)->lists('name','name');
+            return Tab::orderBY('id')->where('status',1)->pluck('name','name');
         });
       
         return $response;

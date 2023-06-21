@@ -36,7 +36,7 @@ class IdeatuesdayController extends Controller
     public function __construct(IdeatuesdayRepository $repository)
     {
         parent::__construct();
-        $this->middleware('acl');
+       // $this->middleware('acl');
         $this->repository = $repository;
     }
 

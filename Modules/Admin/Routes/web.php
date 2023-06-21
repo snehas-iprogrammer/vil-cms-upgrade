@@ -130,7 +130,7 @@
     Route::get('gallery/data', ['as' => 'admin.gallery.list', 'uses' => 'GalleryController@getData', 'permission' => 'index']);
     Route::resource('gallery', 'GalleryController');
     
-    Route::resource('upload-images', 'UploadImagesController');
+    //Route::resource('upload-images', 'UploadImagesController');
     
 //manage app versions
     Route::get('app-versions/data', ['as' => 'admin.app-versions.list', 'uses' => 'AppVersionsController@getData', 'permission' => 'index']);

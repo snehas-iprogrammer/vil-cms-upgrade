@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="portlet-body form">
-        {!! Form::open(['route' => ['admin.ideatuesday.store'], 'method' => 'post', 'files' => 'true', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal ideatuesday-form',  'id' => 'create-ideatuesday', 'msg' => trans('admin::messages.added',['name'=>trans('admin::controller/banner.banner')])]) !!}
+        {!! Form::open(['route' => ['ideatuesday.store'], 'method' => 'post', 'files' => 'true', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal ideatuesday-form',  'id' => 'create-ideatuesday', 'msg' => trans('admin::messages.added',['name'=>trans('admin::controller/banner.banner')])]) !!}
         @include('admin::ideatuesday.form',['action'=>'create'])
         <div class="form-actions">
             <div class="col-md-6">

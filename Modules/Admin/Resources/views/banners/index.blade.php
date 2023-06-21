@@ -37,7 +37,7 @@
 @if(!empty(Auth::user()->hasAdd))
 @include('admin::banners.create')
 @endif
-{{--*/ $linkIcon = \Modules\Admin\Services\Helper\MenuHelper::getSelectedPageLinkIcon() /*--}}
+@php $linkIcon = \Modules\Admin\Services\Helper\MenuHelper::getSelectedPageLinkIcon() @endphp
 <div id="edit_form">
 
 </div>

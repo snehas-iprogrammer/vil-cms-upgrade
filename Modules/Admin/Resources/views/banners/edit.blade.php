@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="portlet-body form">
-        {!! Form::model($banner, ['route' => ['admin.banner.update', $banner->id], 'method' => 'put', 'class' => 'form-horizontal panel banner-form','id'=>'edit-banner', 'msg' => trans('admin::messages.updated', ['name' => trans('admin::controller/banner.banner') ]) ]) !!}
+        {!! Form::model($banner, ['route' => ['banner.update', $banner->id], 'method' => 'put', 'class' => 'form-horizontal panel banner-form','id'=>'edit-banner', 'msg' => trans('admin::messages.updated', ['name' => trans('admin::controller/banner.banner') ]) ]) !!}
         @include('admin::banners.form',['action'=>'update'])
         <div class="form-actions">
             <div class="col-md-6">
