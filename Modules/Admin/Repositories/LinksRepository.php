@@ -240,7 +240,8 @@ class LinksRepository extends BaseRepository
         $cacheKey = str_replace(['\\'], [''], __METHOD__) . ':' . md5(json_encode($routeName));
         
         $response = Cache::tags(Links::table())->remember($cacheKey, $this->ttlCache, function() use($routeName) {
-            $data = Links::where('link_url', 'LIKE', "admin.".$routeName)->with('linkCategory')->get()->first();
+            //$data = Links::where('link_url', 'LIKE', "admin.".$routeName)->with('linkCategory')->get()->first();
+            $data = Links::where('link_url', 'LIKE', $routeName)->with('linkCategory')->get()->first();
             if (!empty($data)) {
                 return $data->toArray();
             }

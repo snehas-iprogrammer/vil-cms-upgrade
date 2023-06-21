@@ -11,9 +11,9 @@
 |
 */
 
-    Route::prefix('admin')->group(function() {
-        Route::get('/', 'AdminController@index');
-    });
+    // Route::prefix('admin')->group(function() {
+    //     Route::get('/', 'AdminController@index');
+    // });
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Modules\Admin\Http\Controllers', 'before' => 'auth'], function() {
     // Route::get('/', ['uses' => 'DashboardController@index', 'permission' => 'index']);
@@ -134,7 +134,10 @@
     
 //manage app versions
     Route::get('app-versions/data', ['as' => 'admin.app-versions.list', 'uses' => 'AppVersionsController@getData', 'permission' => 'index']);
+    Route::post('app-versions/group-action', ['as' => 'admin.app-versions.groupaction', 'uses' => 'AppVersionsController@groupAction', 'permission' => 'update']);
+    //Route::resource('guestbanner', 'GuestBannersController');
     Route::resource('app-versions', 'AppVersionsController');
+
 //manage redx html
     Route::get('redx-html/data', ['as' => 'admin.redx-html.list', 'uses' => 'RedxHtmlController@getData', 'permission' => 'index']);
     Route::resource('redx-html', 'RedxHtmlController');

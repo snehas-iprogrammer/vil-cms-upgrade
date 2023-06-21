@@ -75,7 +75,7 @@ class AppVersionsController extends Controller
                 ->addColumn('status', function ($appVersions) {
                     $status = ($appVersions->status) ? '<span class="label label-sm label-success">' . trans('admin::messages.active') . '</span>' : '<span class="label label-sm label-danger">' . trans('admin::messages.inactive') . '</span>';
                     return $status;
-                })
+                })->escapeColumns([])
                 ->addColumn('is_hungama_enabled', function ($appVersions) {
                     $is_hungama_enabled = ($appVersions->is_hungama_enabled) ? 'True':'False' ;
                     return $is_hungama_enabled;
@@ -94,6 +94,7 @@ class AppVersionsController extends Controller
                     $actionList .= '<a href="javascript:;" class="btn btn-xs default delete red-thunderbird margin-bottom-5" title="Delete" id =' . $appVersions->id . ' ><i class="fa fa-trash-o"></i></a>';
                     return $actionList;
                 })
+                ->escapeColumns([])
                 ->make(true);
     }
 

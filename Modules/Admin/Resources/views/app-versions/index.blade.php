@@ -18,7 +18,6 @@
 @section('content')
 @include('admin::partials.breadcrumb')
 <div id="ajax-response-text"></div>
-
 @if(!empty(Auth::user()->hasAdd))
 @include('admin::app-versions.create')
 @endif
