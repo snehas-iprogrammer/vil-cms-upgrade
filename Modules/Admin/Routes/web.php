@@ -261,8 +261,8 @@ Route::resource('spinmasterqueans', 'SpinMasterQueAnsController');
 //     'password' => 'Auth\PasswordController',
 // ]);
 
-    Route::get('auth/login', 'Auth\AuthController@getLogin');
-    Route::post('auth/login', 'Auth\AuthController@postLogin');
+    Route::get('auth/login', 'Auth\AuthController@getLogin')->name('login');
+    Route::post('auth/login', 'Auth\AuthController@postLogin')->name('login');
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
     Route::get('auth/confirm/{token}', 'Auth\AuthController@getConfirm');
 });
