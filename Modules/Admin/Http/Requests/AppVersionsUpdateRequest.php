@@ -24,7 +24,9 @@ class AppVersionsUpdateRequest extends Request
     public function rules()
     {
         $this->sanitize();
-        $id = $this->app_versions->id;
+        $val = $this->route()->parameters();
+        $val = json_decode(json_encode($val), FALSE);  
+        $id = $val->app_version->id;
         return [
             'app_version' => 'required|max:100|unique:app_versions,app_version,' . $id, //alphaSpaces
             'status' => 'required|numeric'
@@ -58,7 +60,7 @@ class AppVersionsUpdateRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        //return true;
         $action = $this->route()->getAction();
 
         $is_edit = Auth::user()->can($action['as'], 'edit');
